@@ -1,0 +1,20 @@
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\Format CSVs.exe.config
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\obj\Debug\Format CSVs.exe
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\obj\Debug\Format CSVs.pdb
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\Format CSVs.exe
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\Format CSVs.pdb
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\ClosedXML.dll
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\ClosedXML.xml
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\obj\Debug\MandCo.Applications.CSVFormatter.csprojResolveAssemblyReference.cache
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\NLog.dll
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\NLog.xml
+F:\dev\utils\Format CSVs\Format CSVs\obj\Debug\MandCo.Applications.CSVFormatter.csprojResolveAssemblyReference.cache
+F:\dev\utils\Format CSVs\Format CSVs\bin\Debug\ClosedXML.dll
+F:\dev\utils\Format CSVs\Format CSVs\bin\Debug\NLog.dll
+F:\dev\utils\Format CSVs\Format CSVs\bin\Debug\ClosedXML.xml
+F:\dev\utils\Format CSVs\Format CSVs\bin\Debug\NLog.xml
+F:\dev\utils\Format CSVs\Format CSVs\bin\Debug\FormatCSVs.exe.config
+F:\dev\utils\Format CSVs\Format CSVs\bin\Debug\FormatCSVs.exe
+F:\dev\utils\Format CSVs\Format CSVs\bin\Debug\FormatCSVs.pdb
+F:\dev\utils\Format CSVs\Format CSVs\obj\Debug\FormatCSVs.exe
+F:\dev\utils\Format CSVs\Format CSVs\obj\Debug\FormatCSVs.pdb

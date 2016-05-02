@@ -1,0 +1,8 @@
+c:\users\tsmith\documents\visual studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\Format CSVs.exe.config
+c:\users\tsmith\documents\visual studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\Format CSVs.exe
+c:\users\tsmith\documents\visual studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\Format CSVs.pdb
+c:\users\tsmith\documents\visual studio 2013\Projects\Format CSVs\Format CSVs\obj\Debug\Format CSVs.csprojResolveAssemblyReference.cache
+c:\users\tsmith\documents\visual studio 2013\Projects\Format CSVs\Format CSVs\obj\Debug\Format CSVs.exe
+c:\users\tsmith\documents\visual studio 2013\Projects\Format CSVs\Format CSVs\obj\Debug\Format CSVs.pdb
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\ClosedXML.dll
+C:\Users\tsmith\Documents\Visual Studio 2013\Projects\Format CSVs\Format CSVs\bin\Debug\ClosedXML.xml
