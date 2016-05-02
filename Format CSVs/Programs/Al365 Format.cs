@@ -76,8 +76,6 @@ namespace MandCo.Applications.CSVFormatter.Programs
             }
             string amalgamatedSpreadsheetName = (@outputFilePath + "(Al365) " + departmentBreakdown + " --- Run by " + Environment.UserName + " at " + ValidFilePathDate(DateTime.Now) + ".xlsx");
 
-            
-
             if (xlwb.Worksheets.Count != 0)
             {
                 logger.Info("Format completed. Opening Excel");
