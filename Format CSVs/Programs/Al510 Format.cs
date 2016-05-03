@@ -1,18 +1,22 @@
 ﻿using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
+using NLog;
 
-namespace MandCo.Applications.CSVFormatter.Programs
+namespace MandCo.CSVFormatter.Applications.Programs
 {
     class Al510_Format
     {
+        public static Logger logger = LogManager.GetCurrentClassLogger();
+
         public static void Run(string UniqueBatchNo)
         {
             List<string> PCC_IDs = new List<string>();
             List<string> csvFileNames = new List<string>();
-            string csvFilePath = "\\ms35\\common$\\magicqa\\reports\\";
-            string outputFilePath = "H:\\allocati\\PCC Reports\\";
+            string csvFilePath = ConfigurationManager.AppSettings["RawReportPath"];
+            string outputFilePath = ConfigurationManager.AppSettings["AL510OutputPath"];
             string fileName;
             string amalgamatedSpreadsheetName = (@outputFilePath + "(Al510) Run by " + Environment.UserName + " at " + ValidFilePathDate(DateTime.Now) + ".xlsx");
             int fileStartIndex;
@@ -21,27 +25,27 @@ namespace MandCo.Applications.CSVFormatter.Programs
             Console.WriteLine("Running program: Al510 - PCC Report By Packs. URN: " + UniqueBatchNo + "\n\n");
             XLWorkbook xlwb = new XLWorkbook();
 
-            int i = 0;
+            int csvFileCounter = 0;
 
             foreach (string file in files)
             {
-                int j = 0;
+                int csvLineCounter = 0;
                 fileStartIndex = file.IndexOf("\\[Raw]") + 1;
                 fileName = file.Substring(fileStartIndex, (file.Length - fileStartIndex));
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(i + 1 + " " + file);
+                Console.WriteLine(csvFileCounter + 1 + " " + file);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(" > " + fileName);
 
                 csvFileNames.Add(@"\\" + csvFilePath + fileName);
                 var reader = new StreamReader(File.OpenRead(@"\\" + csvFilePath + fileName));
-                System.Data.DataTable res = ConvertCSVtoDataTable(csvFileNames[i]);
+                System.Data.DataTable res = ConvertCSVtoDataTable(csvFileNames[csvFileCounter]);
 
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(',');
-                    if (j == 0)
+                    if (csvLineCounter == 0)
                     {
                         PCC_IDs.Add(values[0].Trim());
 
@@ -54,11 +58,11 @@ namespace MandCo.Applications.CSVFormatter.Programs
                         Console.WriteLine(" > > > Department: (" + values[5].Trim() + ") " + values[6].Trim() + " to PCC Code: " + values[8].Trim() + " - " + values[9].Trim());
                         Console.ForegroundColor = ConsoleColor.White;
                     }
-                    j++;
+                    csvLineCounter++;
                 }
                 reader.Close();
                 reader.Dispose();
-                i++;
+                csvFileCounter++;
             }
             Console.WriteLine("\nOpening Excel ... ");
             if (xlwb.Worksheets.Count != 0)

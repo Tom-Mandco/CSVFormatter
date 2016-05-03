@@ -1,0 +1,170 @@
+2016-05-02 16:26:25.4100 INFO CSV Formatter Starting. Arguments passed: 'Al365'  '1175'  
+2016-05-02 16:26:25.4580 INFO Al365 running ...
+2016-05-02 16:26:25.5450 INFO Starting Al365 Format, Unique batch number: 1175
+2016-05-02 16:26:25.6421 INFO Formatting CSV File: [Raw]Al365(1175) Run by tsmith at 16.25.56 on 2.5.2016.csv
+2016-05-02 16:26:25.9161 INFO Format completed. Opening Excel
+2016-05-02 16:26:26.0681 ERROR Al365 failed to run.
+2016-05-02 16:26:26.0681 ERROR The given path's format is not supported.
+2016-05-02 16:26:26.1561 ERROR    at System.Security.Permissions.FileIOPermission.QuickDemand(FileIOPermissionAccess access, String fullPath, Boolean checkForDuplicates, Boolean needFullPath)
+   at System.IO.FileInfo.Init(String fileName, Boolean checkHost)
+   at System.IO.FileInfo..ctor(String fileName)
+   at System.IO.Packaging.Package.Open(String path, FileMode packageMode, FileAccess packageAccess, FileShare packageShare, Boolean streaming)
+   at System.IO.Packaging.Package.Open(String path, FileMode packageMode, FileAccess packageAccess, FileShare packageShare)
+   at DocumentFormat.OpenXml.Packaging.OpenXmlPackage.CreateCore(String path)
+   at DocumentFormat.OpenXml.Packaging.SpreadsheetDocument.Create(String path, SpreadsheetDocumentType type, Boolean autoSave)
+   at DocumentFormat.OpenXml.Packaging.SpreadsheetDocument.Create(String path, SpreadsheetDocumentType type)
+   at ClosedXML.Excel.XLWorkbook.CreatePackage(String filePath, SpreadsheetDocumentType spreadsheetDocumentType)
+   at ClosedXML.Excel.XLWorkbook.SaveAs(String file)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.SaveAndOpenSpreadsheet(XLWorkbook xlwb, String amalgamatedSpreadsheetName) in f:\dev\utils\Format CSVs\Format CSVs\Programs\Al365 Format.cs:line 123
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.Run(String UniqueBatchNo) in f:\dev\utils\Format CSVs\Format CSVs\Programs\Al365 Format.cs:line 96
+   at MandCo.CSVFormatter.Applications.Program.Main(String[] args) in f:\dev\utils\Format CSVs\Format CSVs\Program.cs:line 57
+2016-05-02 16:26:29.6625 INFO Program ended.
+
+2016-05-02 16:27:54.6120 INFO CSV Formatter Starting. Arguments passed: 'Al365'  '1175'  
+2016-05-02 16:27:54.6280 INFO Al365 running ...
+2016-05-02 16:27:54.6830 INFO Starting Al365 Format, Unique batch number: 1175
+2016-05-02 16:27:54.7590 INFO Formatting CSV File: [Raw]Al365(1175) Run by tsmith at 16.25.56 on 2.5.2016.csv
+2016-05-02 16:27:55.0040 INFO Format completed. Opening Excel
+2016-05-02 16:27:55.0660 ERROR Al365 failed to run.
+2016-05-02 16:27:55.0720 ERROR The given path's format is not supported.
+2016-05-02 16:27:55.1020 ERROR    at System.Security.Permissions.FileIOPermission.QuickDemand(FileIOPermissionAccess access, String fullPath, Boolean checkForDuplicates, Boolean needFullPath)
+   at System.IO.FileInfo.Init(String fileName, Boolean checkHost)
+   at System.IO.FileInfo..ctor(String fileName)
+   at System.IO.Packaging.Package.Open(String path, FileMode packageMode, FileAccess packageAccess, FileShare packageShare, Boolean streaming)
+   at System.IO.Packaging.Package.Open(String path, FileMode packageMode, FileAccess packageAccess, FileShare packageShare)
+   at DocumentFormat.OpenXml.Packaging.OpenXmlPackage.CreateCore(String path)
+   at DocumentFormat.OpenXml.Packaging.SpreadsheetDocument.Create(String path, SpreadsheetDocumentType type, Boolean autoSave)
+   at DocumentFormat.OpenXml.Packaging.SpreadsheetDocument.Create(String path, SpreadsheetDocumentType type)
+   at ClosedXML.Excel.XLWorkbook.CreatePackage(String filePath, SpreadsheetDocumentType spreadsheetDocumentType)
+   at ClosedXML.Excel.XLWorkbook.SaveAs(String file)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.Run(String UniqueBatchNo) in f:\dev\utils\Format CSVs\Format CSVs\Programs\Al365 Format.cs:line 96
+   at MandCo.CSVFormatter.Applications.Program.Main(String[] args) in f:\dev\utils\Format CSVs\Format CSVs\Program.cs:line 57
+2016-05-02 16:27:58.6084 INFO Program ended.
+
+2016-05-02 16:28:30.4665 INFO CSV Formatter Starting. Arguments passed: 'Al365'  '1175'  
+2016-05-02 16:28:30.4845 INFO Al365 running ...
+2016-05-02 16:28:30.5385 INFO Starting Al365 Format, Unique batch number: 1175
+2016-05-02 16:28:30.6126 INFO Formatting CSV File: [Raw]Al365(1175) Run by tsmith at 16.25.56 on 2.5.2016.csv
+2016-05-02 16:28:39.0934 INFO Format completed. Opening Excel
+2016-05-02 16:30:13.1448 INFO CSV Formatter Starting. Arguments passed: 'Al365'  '1175'  
+2016-05-02 16:30:13.1628 INFO Al365 running ...
+2016-05-02 16:30:13.2158 INFO Starting Al365 Format, Unique batch number: 1175
+2016-05-02 16:30:13.2918 INFO Formatting CSV File: [Raw]Al365(1175) Run by tsmith at 16.25.56 on 2.5.2016.csv
+2016-05-02 16:33:47.1432 INFO CSV Formatter Starting. Arguments passed: 'Al365'  '1175'  
+2016-05-02 16:33:47.1612 INFO Al365 running ...
+2016-05-02 16:33:47.2082 INFO Starting Al365 Format, Unique batch number: 1175
+2016-05-02 16:33:47.2892 INFO Formatting CSV File: [Raw]Al365(1175) Run by tsmith at 16.25.56 on 2.5.2016.csv
+2016-05-02 16:34:04.0849 INFO CSV Formatter Starting. Arguments passed: 'Al510'  '1061'  
+2016-05-02 16:34:04.1019 INFO al510 running ...
+2016-05-02 16:34:40.8486 INFO CSV Formatter Starting. Arguments passed: 'Al365'  '1035'  
+2016-05-02 16:34:40.8666 INFO Al365 running ...
+2016-05-02 16:34:40.9386 INFO Starting Al365 Format, Unique batch number: 1035
+2016-05-02 16:34:41.0196 INFO Formatting CSV File: [Raw]Al365(1035) Run by cgirvan at 12.50.7 on 2.5.2016.csv
+2016-05-02 16:34:41.1246 ERROR Two headers cannot be the same. 'Product Number'
+2016-05-02 16:34:41.1296 ERROR A column named 'Product Number' already belongs to this DataTable.
+2016-05-02 16:34:41.1586 ERROR    at System.Data.DataColumnCollection.RegisterColumnName(String name, DataColumn column)
+   at System.Data.DataColumnCollection.BaseAdd(DataColumn column)
+   at System.Data.DataColumnCollection.AddAt(Int32 index, DataColumn column)
+   at System.Data.DataColumnCollection.Add(String columnName)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath)
+2016-05-02 16:34:41.1756 ERROR Two headers cannot be the same. 'Product Number'
+2016-05-02 16:34:41.1756 ERROR A column named 'Product Number' already belongs to this DataTable.
+2016-05-02 16:34:41.1756 ERROR    at System.Data.DataColumnCollection.RegisterColumnName(String name, DataColumn column)
+   at System.Data.DataColumnCollection.BaseAdd(DataColumn column)
+   at System.Data.DataColumnCollection.AddAt(Int32 index, DataColumn column)
+   at System.Data.DataColumnCollection.Add(String columnName)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath)
+2016-05-02 16:34:41.2026 ERROR Two headers cannot be the same. 'Product Number'
+2016-05-02 16:34:41.2096 ERROR A column named 'Product Number' already belongs to this DataTable.
+2016-05-02 16:34:41.2096 ERROR    at System.Data.DataColumnCollection.RegisterColumnName(String name, DataColumn column)
+   at System.Data.DataColumnCollection.BaseAdd(DataColumn column)
+   at System.Data.DataColumnCollection.AddAt(Int32 index, DataColumn column)
+   at System.Data.DataColumnCollection.Add(String columnName)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath)
+2016-05-02 16:34:41.2306 ERROR Two headers cannot be the same. 'Product Number'
+2016-05-02 16:34:41.2306 ERROR A column named 'Product Number' already belongs to this DataTable.
+2016-05-02 16:34:41.2416 ERROR    at System.Data.DataColumnCollection.RegisterColumnName(String name, DataColumn column)
+   at System.Data.DataColumnCollection.BaseAdd(DataColumn column)
+   at System.Data.DataColumnCollection.AddAt(Int32 index, DataColumn column)
+   at System.Data.DataColumnCollection.Add(String columnName)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath)
+2016-05-02 16:34:41.2766 ERROR Al365 failed to run.
+2016-05-02 16:34:41.2846 ERROR Cannot find column 2.
+2016-05-02 16:34:41.2846 ERROR    at System.Data.DataColumnCollection.get_Item(Int32 index)
+   at System.Data.DataRow.set_Item(Int32 columnIndex, Object value)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.Run(String UniqueBatchNo)
+   at MandCo.CSVFormatter.Applications.Program.Main(String[] args)
+2016-05-02 16:34:44.7960 INFO Program ended.
+
+2016-05-02 16:35:05.3410 INFO CSV Formatter Starting. Arguments passed: 'Al365'  '1035'  
+2016-05-02 16:35:05.3600 INFO Al365 running ...
+2016-05-02 16:35:05.4170 INFO Starting Al365 Format, Unique batch number: 1035
+2016-05-02 16:35:05.4940 INFO Formatting CSV File: [Raw]Al365(1035) Run by cgirvan at 12.50.7 on 2.5.2016.csv
+2016-05-02 16:35:05.5220 ERROR Two headers cannot be the same. 'Product Number'
+2016-05-02 16:35:05.5280 ERROR A column named 'Product Number' already belongs to this DataTable.
+2016-05-02 16:35:05.5530 ERROR    at System.Data.DataColumnCollection.RegisterColumnName(String name, DataColumn column)
+   at System.Data.DataColumnCollection.BaseAdd(DataColumn column)
+   at System.Data.DataColumnCollection.AddAt(Int32 index, DataColumn column)
+   at System.Data.DataColumnCollection.Add(String columnName)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath) in f:\dev\utils\Format CSVs\Format CSVs\Programs\Al365 Format.cs:line 158
+2016-05-02 16:35:05.5670 ERROR Two headers cannot be the same. 'Product Number'
+2016-05-02 16:35:05.5740 ERROR A column named 'Product Number' already belongs to this DataTable.
+2016-05-02 16:35:05.5740 ERROR    at System.Data.DataColumnCollection.RegisterColumnName(String name, DataColumn column)
+   at System.Data.DataColumnCollection.BaseAdd(DataColumn column)
+   at System.Data.DataColumnCollection.AddAt(Int32 index, DataColumn column)
+   at System.Data.DataColumnCollection.Add(String columnName)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath) in f:\dev\utils\Format CSVs\Format CSVs\Programs\Al365 Format.cs:line 158
+2016-05-02 16:35:05.5930 ERROR Two headers cannot be the same. 'Product Number'
+2016-05-02 16:35:05.5930 ERROR A column named 'Product Number' already belongs to this DataTable.
+2016-05-02 16:35:05.6050 ERROR    at System.Data.DataColumnCollection.RegisterColumnName(String name, DataColumn column)
+   at System.Data.DataColumnCollection.BaseAdd(DataColumn column)
+   at System.Data.DataColumnCollection.AddAt(Int32 index, DataColumn column)
+   at System.Data.DataColumnCollection.Add(String columnName)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath) in f:\dev\utils\Format CSVs\Format CSVs\Programs\Al365 Format.cs:line 158
+2016-05-02 16:35:05.6221 ERROR Two headers cannot be the same. 'Product Number'
+2016-05-02 16:35:05.6221 ERROR A column named 'Product Number' already belongs to this DataTable.
+2016-05-02 16:35:05.6391 ERROR    at System.Data.DataColumnCollection.RegisterColumnName(String name, DataColumn column)
+   at System.Data.DataColumnCollection.BaseAdd(DataColumn column)
+   at System.Data.DataColumnCollection.AddAt(Int32 index, DataColumn column)
+   at System.Data.DataColumnCollection.Add(String columnName)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath) in f:\dev\utils\Format CSVs\Format CSVs\Programs\Al365 Format.cs:line 158
+2016-05-02 16:35:05.6581 ERROR Al365 failed to run.
+2016-05-02 16:35:05.6581 ERROR Cannot find column 2.
+2016-05-02 16:35:05.6741 ERROR    at System.Data.DataColumnCollection.get_Item(Int32 index)
+   at System.Data.DataRow.set_Item(Int32 columnIndex, Object value)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath) in f:\dev\utils\Format CSVs\Format CSVs\Programs\Al365 Format.cs:line 173
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.Run(String UniqueBatchNo) in f:\dev\utils\Format CSVs\Format CSVs\Programs\Al365 Format.cs:line 60
+   at MandCo.CSVFormatter.Applications.Program.Main(String[] args) in f:\dev\utils\Format CSVs\Format CSVs\Program.cs:line 57
+2016-05-02 16:35:09.1814 INFO Program ended.
+
+2016-05-02 16:35:20.3695 INFO CSV Formatter Starting. Arguments passed: 'Al365'  '1035'  
+2016-05-02 16:35:20.3865 INFO Al365 running ...
+2016-05-02 16:35:28.3223 INFO Starting Al365 Format, Unique batch number: 1035
+2016-05-02 16:35:34.7940 INFO Formatting CSV File: [Raw]Al365(1035) Run by cgirvan at 12.50.7 on 2.5.2016.csv
+2016-05-02 16:35:47.5242 ERROR Two headers cannot be the same. 'Product Number'
+2016-05-02 16:35:47.6873 ERROR A column named 'Product Number' already belongs to this DataTable.
+2016-05-02 16:35:47.8593 ERROR    at System.Data.DataColumnCollection.RegisterColumnName(String name, DataColumn column)
+   at System.Data.DataColumnCollection.BaseAdd(DataColumn column)
+   at System.Data.DataColumnCollection.AddAt(Int32 index, DataColumn column)
+   at System.Data.DataColumnCollection.Add(String columnName)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath) in f:\dev\utils\Format CSVs\Format CSVs\Programs\Al365 Format.cs:line 158
+2016-05-02 16:35:49.6755 ERROR Two headers cannot be the same. 'Product Number'
+2016-05-02 16:35:49.9565 ERROR A column named 'Product Number' already belongs to this DataTable.
+2016-05-02 16:35:50.3405 ERROR    at System.Data.DataColumnCollection.RegisterColumnName(String name, DataColumn column)
+   at System.Data.DataColumnCollection.BaseAdd(DataColumn column)
+   at System.Data.DataColumnCollection.AddAt(Int32 index, DataColumn column)
+   at System.Data.DataColumnCollection.Add(String columnName)
+   at MandCo.CSVFormatter.Applications.Programs.Al365_Format.ConvertCSVtoDataTable(String strFilePath) in f:\dev\utils\Format CSVs\Format CSVs\Programs\Al365 Format.cs:line 158
+2016-05-02 16:36:07.6102 INFO CSV Formatter Starting. Arguments passed: 'Al365'  '1066'  
+2016-05-02 16:36:07.6273 INFO Al365 running ...
+2016-05-02 16:36:09.7745 INFO Starting Al365 Format, Unique batch number: 1066
+2016-05-02 16:36:09.8515 INFO Formatting CSV File: [Raw]Al365(1066) Run by tsmith at 13.56.37 on 29.4.2016.csv
+2016-05-02 16:36:49.0284 INFO CSV Formatter Starting. Arguments passed: 'Al365'  '1066'  
+2016-05-02 16:36:49.0444 INFO Al365 running ...
+2016-05-02 16:36:49.0774 INFO Starting Al365 Format, Unique batch number: 1066
+2016-05-02 16:36:49.1504 INFO Formatting CSV File: [Raw]Al365(1066) Run by tsmith at 13.56.37 on 29.4.2016.csv
+2016-05-02 16:36:49.3804 INFO Format completed. Opening Excel
+2016-05-02 16:36:50.7116 INFO Completed successfully.
+2016-05-02 16:36:51.7157 INFO Program ended.
+

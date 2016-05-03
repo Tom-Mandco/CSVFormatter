@@ -6,19 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NLog;
+using System.Configuration;
 
-namespace MandCo.Applications.CSVFormatter.Programs
+namespace MandCo.CSVFormatter.Applications.Programs
 {
     class Al365_Format
     {
-        
+        public static Logger logger = LogManager.GetCurrentClassLogger();
 
         public static void Run(string UniqueBatchNo)
         {
-            Logger logger = LogManager.GetCurrentClassLogger();
+            
+
             List<string> csvFileNames = new List<string>();
-            string csvFilePath = "\\ms35\\common$\\magicqa\\reports\\";
-            string outputFilePath = "H:\\allocati\\PCC Reports\\";
+            string csvFilePath = ConfigurationManager.AppSettings["RawReportPath"];
+            string outputFilePath = ConfigurationManager.AppSettings["AL365OutputPath"];
             string fileName;
             string departmentBreakdown = "Al365";
             int fileStartIndex;
@@ -42,7 +44,18 @@ namespace MandCo.Applications.CSVFormatter.Programs
                 Console.WriteLine(" > Formatting csv file ... ");
                 logger.Info("Formatting CSV File: " + fileName);
 
-                csvFileNames.Add(@"\\" + csvFilePath + fileName);
+
+                try
+                {
+                    csvFileNames.Add(@"\\" + csvFilePath + fileName);
+                }
+                catch(Exception ex)
+                {
+                    logger.Error("Error adding csv file: " + csvFilePath + fileName);
+                    logger.Error(ex.Message);
+                    logger.Error(ex.StackTrace);
+                }
+
                 var reader = new StreamReader(File.OpenRead(@"\\" + csvFilePath + fileName));
                 System.Data.DataTable res = ConvertCSVtoDataTable(csvFileNames[csvFileCounter]);
 
@@ -74,18 +87,19 @@ namespace MandCo.Applications.CSVFormatter.Programs
                 reader.Dispose();
                 csvFileCounter++;
             }
-            string amalgamatedSpreadsheetName = (@outputFilePath + "(Al365) " + departmentBreakdown + " --- Run by " + Environment.UserName + " at " + ValidFilePathDate(DateTime.Now) + ".xlsx");
+            string amalgamatedSpreadsheetName = (outputFilePath + "(Al365) " + departmentBreakdown + " --- Run by " + Environment.UserName + " at " + ValidFilePathDate(DateTime.Now) + ".xlsx");
 
             if (xlwb.Worksheets.Count != 0)
             {
                 logger.Info("Format completed. Opening Excel");
                 Console.WriteLine("\nOpening Excel ... ");
-                SaveAndOpenSpreadsheet(xlwb, amalgamatedSpreadsheetName);
+                xlwb.SaveAs(amalgamatedSpreadsheetName);
+                System.Diagnostics.Process.Start(amalgamatedSpreadsheetName);
                 DeleteRawCSVs(csvFileNames);
             }
             else
             {
-                logger.Error("Excel output file does not exist.");
+                logger.Warn("Excel output file does not exist.");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nExcel file does not exist.");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -101,14 +115,8 @@ namespace MandCo.Applications.CSVFormatter.Programs
             Console.ForegroundColor = ConsoleColor.White;
             foreach (string csvFileName in RawCSVs)
             {
-                //File.Delete(csvFileName);
+                File.Delete(csvFileName);
             }
-        }
-
-        public static void SaveAndOpenSpreadsheet(XLWorkbook xlwb, string amalgamatedSpreadsheetName)
-        {
-            xlwb.SaveAs(amalgamatedSpreadsheetName);
-            System.Diagnostics.Process.Start(amalgamatedSpreadsheetName);
         }
 
         public static string ValidFilePathDate(DateTime dt)
@@ -140,7 +148,16 @@ namespace MandCo.Applications.CSVFormatter.Programs
                 string[] headers = sr.ReadLine().Split(',');
                 foreach (string header in headers)
                 {
-                    dt.Columns.Add(header);
+                    try
+                    {
+                        dt.Columns.Add(header);
+                    }
+                    catch(Exception ex)
+                    {
+                        logger.Error("Two headers cannot be the same. '" + header + "'");
+                        logger.Error(ex.Message);
+                        logger.Error(ex.StackTrace);
+                    }
                 }
                 while (!sr.EndOfStream)
                 {
