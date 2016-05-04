@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NLog;
 using System.Configuration;
+using MandCo.CSVFormatter;
 
 namespace MandCo.CSVFormatter.Applications.Programs
 {
@@ -16,86 +17,93 @@ namespace MandCo.CSVFormatter.Applications.Programs
 
         public static void Run(string UniqueBatchNo)
         {
+            string csvFileName, fileName;
             
-
-            List<string> csvFileNames = new List<string>();
+            logger.Debug("Aquiring csv & output path");
             string csvFilePath = ConfigurationManager.AppSettings["RawReportPath"];
             string outputFilePath = ConfigurationManager.AppSettings["AL365OutputPath"];
-            string fileName;
+            logger.Debug("Successful");
+
             string departmentBreakdown = "Al365";
             int fileStartIndex;
 
-            string[] files = Directory.GetFiles(@"\\" + csvFilePath, "[Raw]" + "Al365" + "(" + UniqueBatchNo + ")*.csv");
+            logger.Debug("Finding list of csv files");
+                string[] files = Directory.GetFiles(@"\\" + csvFilePath, "[Raw]" + "Al365" + "(" + UniqueBatchNo + ")*.csv");
+                logger.Debug("Found " + files.Count() + " files");
+                string file = files.First();
             Console.WriteLine("Running program: Al365 - PCC Report By Packs. URN: " + UniqueBatchNo + "\n\n");
             logger.Info("Starting Al365 Format, Unique batch number: " + UniqueBatchNo);
 
             XLWorkbook xlwb = new XLWorkbook();
 
-            int csvFileCounter = 0;
+            int csvLineCounter = 0;
 
-            foreach (string file in files)
+            fileStartIndex = file.IndexOf("\\[Raw]") + 1;
+            fileName = file.Substring(fileStartIndex, (file.Length - fileStartIndex));
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("1. " + file);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" > Formatting csv file ... \n");
+            logger.Info("Formatting CSV File: " + fileName);
+
+            csvFileName = (@"\\" + csvFilePath + fileName);
+
+            logger.Debug("Attempting to open streamreader for file: " + csvFileName);
+            var reader = new StreamReader(File.OpenRead(@"\\" + csvFilePath + fileName));
+            logger.Debug("Reading ... ");
+
+            logger.Debug("Converting csv data to Datatable");
+            System.Data.DataTable res = ConvertCSVtoDataTable(csvFileName);
+            int totalCSVLines = Services.Common.CSVRowCount(csvFileName);
+            logger.Debug("Successful");
+
+            logger.Debug("Getting Spreadsheet info");
+            while (!reader.EndOfStream)
             {
-                int csvLineCounter = 0;
-                fileStartIndex = file.IndexOf("\\[Raw]") + 1;
-                fileName = file.Substring(fileStartIndex, (file.Length - fileStartIndex));
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(csvFileCounter + 1 + " " + file);
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine(" > Formatting csv file ... ");
-                logger.Info("Formatting CSV File: " + fileName);
-
-
-                try
+                var line = reader.ReadLine();
+                var values = line.Split(',');
+                if (csvLineCounter == 0)
                 {
-                    csvFileNames.Add(@"\\" + csvFilePath + fileName);
+                    departmentBreakdown = "(" + values[0];
+                    if (values[2] != "")
+                        departmentBreakdown += "-" + values[2];
+
+                    if (values[4] != "")
+                        departmentBreakdown += "-" + values[4];
+
+                    departmentBreakdown += ") " + values[1];
+                    if (values[2] != "")
+                        departmentBreakdown += " - " + values[3];
+
+                    if (values[4] != "")
+                        departmentBreakdown += " - " + values[5];
+
+                    logger.Debug("Successful");
+                    logger.Debug("Creating new worksheet");
+                    xlwb.Worksheets.Add(res, Services.Common.CleanSpreadsheetName(values[0] + " - " + values[1]));
+                    logger.Debug("Successful");
                 }
-                catch(Exception ex)
-                {
-                    logger.Error("Error adding csv file: " + csvFilePath + fileName);
-                    logger.Error(ex.Message);
-                    logger.Error(ex.StackTrace);
-                }
-
-                var reader = new StreamReader(File.OpenRead(@"\\" + csvFilePath + fileName));
-                System.Data.DataTable res = ConvertCSVtoDataTable(csvFileNames[csvFileCounter]);
-
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
-                    if (csvLineCounter == 0)
-                    {
-                        departmentBreakdown = "(" + values[0];
-                        if (values[2] != "")
-                            departmentBreakdown += "-" + values[2];
-
-                        if (values[4] != "")
-                            departmentBreakdown += "-" + values[4];
-
-                        departmentBreakdown += ") " + values[1];
-                        if (values[2] != "")
-                            departmentBreakdown += " - " + values[3];
-
-                        if (values[4] != "")
-                            departmentBreakdown += " - " + values[5];
-
-                        xlwb.Worksheets.Add(res, (values[0] + " - " + values[1]));
-                    }
-                    csvLineCounter++;
-                }
-                reader.Close();
-                reader.Dispose();
-                csvFileCounter++;
+                Services.DrawProgressBar.Draw(csvLineCounter, totalCSVLines, 20, '█');
+                csvLineCounter++;
             }
-            string amalgamatedSpreadsheetName = (outputFilePath + "(Al365) " + departmentBreakdown + " --- Run by " + Environment.UserName + " at " + ValidFilePathDate(DateTime.Now) + ".xlsx");
+            logger.Debug("Successful");
 
+            logger.Debug("Closing reader");
+            reader.Close();
+            reader.Dispose();
+
+            logger.Debug("Creating spreadsheet name");
+            string amalgamatedSpreadsheetName = (outputFilePath + "(Al365) " + departmentBreakdown + " --- Run by " + Environment.UserName + " at " + ValidFilePathDate(DateTime.Now) + ".xlsx");
+            logger.Debug("Successful");
             if (xlwb.Worksheets.Count != 0)
             {
                 logger.Info("Format completed. Opening Excel");
-                Console.WriteLine("\nOpening Excel ... ");
+                Console.WriteLine("\n\nOpening Excel ... ");
                 xlwb.SaveAs(amalgamatedSpreadsheetName);
                 System.Diagnostics.Process.Start(amalgamatedSpreadsheetName);
-                DeleteRawCSVs(csvFileNames);
+                logger.Debug("Successful");
+                DeleteRawCSV(csvFileName);
             }
             else
             {
@@ -104,19 +112,18 @@ namespace MandCo.CSVFormatter.Applications.Programs
                 Console.WriteLine("\nExcel file does not exist.");
                 Console.ForegroundColor = ConsoleColor.White;
             }
-            logger.Info("Completed successfully.");
+            logger.Info("Completed Successfully.");
             Console.WriteLine("\nFin.");
         }
 
-        public static void DeleteRawCSVs(List<string> RawCSVs)
+        public static void DeleteRawCSV(string RawCSV)
         {
+            logger.Info("Deleting raw csv files");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Deleting raw csv files ... ");
+            Console.WriteLine("Deleting raw csv file ... ");
             Console.ForegroundColor = ConsoleColor.White;
-            foreach (string csvFileName in RawCSVs)
-            {
-                File.Delete(csvFileName);
-            }
+            File.Delete(RawCSV);
+            logger.Debug("Successful");
         }
 
         public static string ValidFilePathDate(DateTime dt)
@@ -138,8 +145,7 @@ namespace MandCo.CSVFormatter.Applications.Programs
 
         public static System.Data.DataTable ConvertCSVtoDataTable(string strFilePath)
         {
-            List<string> headersNullValues = new List<string>();
-            headersNullValues.Add("");
+            int rowCount = 0;
             StreamReader sr = new StreamReader(strFilePath);
             System.Data.DataTable dt = new System.Data.DataTable();
             sr.ReadLine();
@@ -152,7 +158,7 @@ namespace MandCo.CSVFormatter.Applications.Programs
                     {
                         dt.Columns.Add(header);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         logger.Error("Two headers cannot be the same. '" + header + "'");
                         logger.Error(ex.Message);
@@ -165,8 +171,10 @@ namespace MandCo.CSVFormatter.Applications.Programs
                     System.Data.DataRow dr = dt.NewRow();
                     for (int i = 0; i < headers.Length; i++)
                     {
+                        rowCount++;
                         dr[i] = rows[i];
                     }
+                    rowCount++;
                     dt.Rows.Add(dr);
                 }
             }

@@ -1,7 +1,0 @@
-2016-05-03 09:10:41.9338 INFO CSV Formatter Starting. Arguments passed: 'Al365'  '1066'  
-2016-05-03 09:10:41.9518 INFO Al365 running ...
-2016-05-03 09:10:42.8900 INFO Starting Al365 Format, Unique batch number: 1066
-2016-05-03 09:10:42.9640 WARN Excel output file does not exist.
-2016-05-03 09:10:42.9640 INFO Completed successfully.
-2016-05-03 09:10:43.9742 INFO Program ended.
-

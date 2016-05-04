@@ -32,13 +32,15 @@ namespace MandCo.CSVFormatter.Applications.Programs
                 int csvLineCounter = 0;
                 fileStartIndex = file.IndexOf("\\[Raw]") + 1;
                 fileName = file.Substring(fileStartIndex, (file.Length - fileStartIndex));
+                Console.WriteLine("\n");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(csvFileCounter + 1 + " " + file);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(" > " + fileName);
 
-                csvFileNames.Add(@"\\" + csvFilePath + fileName);
-                var reader = new StreamReader(File.OpenRead(@"\\" + csvFilePath + fileName));
+                int totalCSVLines = Services.Common.CSVRowCount(file);
+                csvFileNames.Add(csvFilePath + fileName);
+                var reader = new StreamReader(File.OpenRead(csvFilePath + fileName));
                 System.Data.DataTable res = ConvertCSVtoDataTable(csvFileNames[csvFileCounter]);
 
                 while (!reader.EndOfStream)
@@ -52,14 +54,16 @@ namespace MandCo.CSVFormatter.Applications.Programs
                         Console.Write(" > New PCC ID Found: ");
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write(values[1].Trim() + "\n");
-                        xlwb.Worksheets.Add(res, values[1].Trim() + " (" + values[6].Trim() + ")");
+                        xlwb.Worksheets.Add(res, CleanSpreadsheetName(values[1].Trim() + " (" + values[6].Trim() + ")"));
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                         Console.WriteLine(" > > Writing datatable to: " + values[1].Trim() + " (" + values[6].Trim() + ")");
                         Console.WriteLine(" > > > Department: (" + values[5].Trim() + ") " + values[6].Trim() + " to PCC Code: " + values[8].Trim() + " - " + values[9].Trim());
                         Console.ForegroundColor = ConsoleColor.White;
                     }
+                    Services.DrawProgressBar.Draw(csvLineCounter, totalCSVLines, 20, '█');
                     csvLineCounter++;
                 }
+                
                 reader.Close();
                 reader.Dispose();
                 csvFileCounter++;
@@ -130,6 +134,17 @@ namespace MandCo.CSVFormatter.Applications.Programs
             }
             sr.Dispose();
             return dt;
+        }
+
+        public static string CleanSpreadsheetName(string rawSpreadsheetName)
+        {
+            var charsToRemove = new string[] { ":", "\\", "/", "?", "*", "[", "]" };
+            foreach (var c in charsToRemove)
+            {
+                rawSpreadsheetName = rawSpreadsheetName.Replace(c, " ");
+            }
+
+            return rawSpreadsheetName;
         }
     }
 }
