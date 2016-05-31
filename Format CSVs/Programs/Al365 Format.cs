@@ -81,6 +81,7 @@ namespace MandCo.CSVFormatter.Applications.Programs
 
                     logger.Debug("Successful");
                     logger.Debug("Creating new worksheet");
+
                     xlwb.Worksheets.Add(res, Services.Common.CleanSpreadsheetName(values[0] + " - " + values[1]));
                     logger.Debug("Successful");
                 }

@@ -29,6 +29,7 @@ namespace MandCo.CSVFormatter.Applications.Programs
 
             foreach (string file in files)
             {
+                int[] intColumns = new int[] {5,6,7,8,9,10};
                 int csvLineCounter = 0;
                 fileStartIndex = file.IndexOf("\\[Raw]") + 1;
                 fileName = file.Substring(fileStartIndex, (file.Length - fileStartIndex));
@@ -43,6 +44,8 @@ namespace MandCo.CSVFormatter.Applications.Programs
                 var reader = new StreamReader(File.OpenRead(csvFilePath + fileName));
                 System.Data.DataTable res = ConvertCSVtoDataTable(csvFileNames[csvFileCounter]);
 
+
+
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
@@ -54,6 +57,10 @@ namespace MandCo.CSVFormatter.Applications.Programs
                         Console.Write(" > New PCC ID Found: ");
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write(values[1].Trim() + "\n");
+                        foreach (int i in intColumns)
+                        {
+                            res.Columns[i].DataType = typeof(Int32);
+                        }
                         xlwb.Worksheets.Add(res, CleanSpreadsheetName(values[1].Trim() + " (" + values[6].Trim() + ")"));
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                         Console.WriteLine(" > > Writing datatable to: " + values[1].Trim() + " (" + values[6].Trim() + ")");
@@ -78,7 +85,7 @@ namespace MandCo.CSVFormatter.Applications.Programs
                 Console.ForegroundColor = ConsoleColor.White;
                 foreach (string csvFileName in csvFileNames)
                 {
-                    File.Delete(csvFileName);
+                    //File.Delete(csvFileName);
                 }
             }
             else
