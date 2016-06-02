@@ -126,7 +126,14 @@ namespace MandCo.CSVFormatter.Applications.Programs
                 string[] headers = sr.ReadLine().Split(',');
                 foreach (string header in headers)
                 {
-                    dt.Columns.Add(header);
+                    if (header == "WH Stock" || header == "On Order" || header == "Full Price" || header == "Current Price" || header == "Proposed Price")
+                    {
+                        dt.Columns.Add(header, typeof(int));
+                    }
+                    else
+                    {
+                        dt.Columns.Add(header);
+                    }
                 }
                 while (!sr.EndOfStream)
                 {

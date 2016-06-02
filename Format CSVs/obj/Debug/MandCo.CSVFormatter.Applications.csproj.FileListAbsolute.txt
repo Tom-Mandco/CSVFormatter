@@ -21,3 +21,4 @@ F:\dev\utils\Format CSVs\Format CSVs\bin\Debug\NLog.config
 \\MS35\tsmith$\dev\utils\Format CSVs\Format CSVs\bin\Debug\NLog.xml
 \\MS35\tsmith$\dev\utils\Format CSVs\Format CSVs\obj\Debug\MandCo.CSVFormatter.Applications.csprojResolveAssemblyReference.cache
 \\MS35\tsmith$\dev\utils\Format CSVs\Format CSVs\bin\Debug\DocumentFormat.OpenXml.dll
+F:\dev\utils\Format CSVs\Format CSVs\bin\Debug\DocumentFormat.OpenXml.dll

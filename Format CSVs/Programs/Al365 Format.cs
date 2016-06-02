@@ -157,7 +157,14 @@ namespace MandCo.CSVFormatter.Applications.Programs
                 {
                     try
                     {
-                        dt.Columns.Add(header);
+                        if (header == "Product Number" || header == "Product Description" || header == "Pack" || header == "Colour" || header == "Size")
+                        {
+                            dt.Columns.Add(header);
+                        }
+                        else
+                        {
+                            dt.Columns.Add(header, typeof(int));
+                        }
                     }
                     catch (Exception ex)
                     {
