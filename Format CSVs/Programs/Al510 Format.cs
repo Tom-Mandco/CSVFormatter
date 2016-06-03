@@ -29,7 +29,6 @@ namespace MandCo.CSVFormatter.Applications.Programs
 
             foreach (string file in files)
             {
-                int[] intColumns = new int[] {5,6,7,8,9,10};
                 int csvLineCounter = 0;
                 fileStartIndex = file.IndexOf("\\[Raw]") + 1;
                 fileName = file.Substring(fileStartIndex, (file.Length - fileStartIndex));
@@ -57,10 +56,7 @@ namespace MandCo.CSVFormatter.Applications.Programs
                         Console.Write(" > New PCC ID Found: ");
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write(values[1].Trim() + "\n");
-                        foreach (int i in intColumns)
-                        {
-                            res.Columns[i].DataType = typeof(Int32);
-                        }
+
                         xlwb.Worksheets.Add(res, CleanSpreadsheetName(values[1].Trim() + " (" + values[6].Trim() + ")"));
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                         Console.WriteLine(" > > Writing datatable to: " + values[1].Trim() + " (" + values[6].Trim() + ")");
@@ -83,9 +79,12 @@ namespace MandCo.CSVFormatter.Applications.Programs
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nDeleting raw csv files ... ");
                 Console.ForegroundColor = ConsoleColor.White;
-                foreach (string csvFileName in csvFileNames)
+                if (ConfigurationManager.AppSettings["Debug"] == "No")
                 {
-                    //File.Delete(csvFileName);
+                    foreach (string csvFileName in csvFileNames)
+                    {
+                        File.Delete(csvFileName);
+                    }
                 }
             }
             else
@@ -126,9 +125,9 @@ namespace MandCo.CSVFormatter.Applications.Programs
                 string[] headers = sr.ReadLine().Split(',');
                 foreach (string header in headers)
                 {
-                    if (header == "WH Stock" || header == "On Order" || header == "Full Price" || header == "Current Price" || header == "Proposed Price")
+                    if (header == "Full Price" || header == "Current Price" || header == "Proposed Price")
                     {
-                        dt.Columns.Add(header, typeof(int));
+                        dt.Columns.Add(header, typeof(double));
                     }
                     else
                     {

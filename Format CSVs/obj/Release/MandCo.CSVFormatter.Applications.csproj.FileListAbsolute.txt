@@ -1,0 +1,12 @@
+F:\dev\utils\Format CSVs\Format CSVs\bin\Release\FormatCSVs.exe.config
+F:\dev\utils\Format CSVs\Format CSVs\bin\Release\NLog.config
+F:\dev\utils\Format CSVs\Format CSVs\bin\Release\FormatCSVs.exe
+F:\dev\utils\Format CSVs\Format CSVs\bin\Release\FormatCSVs.pdb
+F:\dev\utils\Format CSVs\Format CSVs\bin\Release\ClosedXML.dll
+F:\dev\utils\Format CSVs\Format CSVs\bin\Release\DocumentFormat.OpenXml.dll
+F:\dev\utils\Format CSVs\Format CSVs\bin\Release\NLog.dll
+F:\dev\utils\Format CSVs\Format CSVs\bin\Release\ClosedXML.xml
+F:\dev\utils\Format CSVs\Format CSVs\bin\Release\NLog.xml
+F:\dev\utils\Format CSVs\Format CSVs\obj\Release\FormatCSVs.exe
+F:\dev\utils\Format CSVs\Format CSVs\obj\Release\FormatCSVs.pdb
+F:\dev\utils\Format CSVs\Format CSVs\obj\Release\MandCo.CSVFormatter.Applications.csprojResolveAssemblyReference.cache

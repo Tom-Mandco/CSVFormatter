@@ -104,7 +104,10 @@ namespace MandCo.CSVFormatter.Applications.Programs
                 xlwb.SaveAs(amalgamatedSpreadsheetName);
                 System.Diagnostics.Process.Start(amalgamatedSpreadsheetName);
                 logger.Debug("Successful");
-                DeleteRawCSV(csvFileName);
+                if (ConfigurationManager.AppSettings["Debug"] == "No")
+                {
+                    DeleteRawCSV(csvFileName);
+                }
             }
             else
             {
