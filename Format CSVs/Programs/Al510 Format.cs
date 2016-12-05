@@ -83,7 +83,17 @@ namespace MandCo.CSVFormatter.Applications.Programs
                 {
                     foreach (string csvFileName in csvFileNames)
                     {
-                        File.Delete(csvFileName);
+                        try
+                        {
+                            File.Delete(csvFileName);
+                        }
+                        catch(Exception ex)
+                        {
+                            logger.Error(ex.Message);
+                            logger.Error(ex.StackTrace);
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.WriteLine("Could not delete file: " + csvFileName);
+                        }
                     }
                 }
             }
@@ -125,6 +135,11 @@ namespace MandCo.CSVFormatter.Applications.Programs
                 string[] headers = sr.ReadLine().Split(',');
                 foreach (string header in headers)
                 {
+                    dt.Columns.Add(header);
+                    /*
+                     * Commented out due to an issue with 'Assorted' size items - the price column is throwing a wobbly because its not in double format
+                     * Fair enough really but for a quick fix I have wheecht out the offending pixels.
+                     * 
                     if (header == "Full Price" || header == "Current Price" || header == "Proposed Price")
                     {
                         dt.Columns.Add(header, typeof(double));
@@ -133,6 +148,7 @@ namespace MandCo.CSVFormatter.Applications.Programs
                     {
                         dt.Columns.Add(header);
                     }
+                    */
                 }
                 while (!sr.EndOfStream)
                 {
